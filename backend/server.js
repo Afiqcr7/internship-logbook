@@ -9,12 +9,25 @@ connectDB();
 const app = express();
 
 // 1. CORS Middleware
-// Change this:
+const allowedOrigins = [
+  "https://internship-logbook-g39l.vercel.app"
+];
+
 app.use(cors({
-  origin: "https://internship-logbook-g39l.vercel.app/", // Put your real URL here
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));;
 
 // 2. Body Parser
 app.use(express.json());
