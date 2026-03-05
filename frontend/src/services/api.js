@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ 
-  baseURL: 'https://internship-logbook-1.onrender.com/api' // Note the /api
+  baseURL: 'https://internship-logbook-1.onrender.com' // Note the /api
 });
 
 // Automatically attach token to requests
