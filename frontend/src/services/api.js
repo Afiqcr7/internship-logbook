@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ 
+  baseURL: 'https://internship-logbook-1.onrender.com' 
+});
 
 // Automatically attach token to requests
 API.interceptors.request.use((req) => {
