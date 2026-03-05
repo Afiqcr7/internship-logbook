@@ -7,11 +7,23 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// 1. CORS Middleware
+app.use(cors({
+  origin: "https://your-frontend-domain.vercel.app" // Replace with your Vercel URL
+}));
+
+// 2. Body Parser
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-// Routes
+// 3. Logger Middleware (Put it here, BEFORE the routes)
+app.use((req, res, next) => {
+  console.log(`${req.method} request received at ${req.url}`);
+  next();
+});
+
+// 4. Routes (Must be after middleware)
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/logs', require('./routes/logRoutes'));
 
