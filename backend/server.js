@@ -9,8 +9,11 @@ connectDB();
 const app = express();
 
 // 1. CORS Middleware
+// Change this:
 app.use(cors({
-  origin: "https://your-frontend-domain.vercel.app" // Replace with your Vercel URL
+  origin: "https://internship-logbook-g39l.vercel.app/", // Put your real URL here
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 // 2. Body Parser
